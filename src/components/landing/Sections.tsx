@@ -4,7 +4,6 @@ import {
   MapPin, Menu, MessageCircle, Phone, ShieldCheck, X, Microscope, Scale, PhoneCall,
 } from "lucide-react";
 import { CONTACT, Card, Container, CtaButton, IconBadge, Section, SectionHeading } from "./primitives";
-import { AppointmentForm } from "./AppointmentForm";
 import { trackAdsConversion } from "./tracking";
 import logo from "@/assets/tdc_logo.png.asset.json";
 
@@ -35,7 +34,7 @@ export function Header() {
         </nav>
         <div className="hidden items-center gap-3 lg:flex">
           <a href={CONTACT.phoneHref} onClick={() => trackAdsConversion("call")} className="flex items-center gap-2 text-sm font-semibold text-navy"><Phone className="h-4 w-4 text-royal" />{CONTACT.phone}</a>
-          <CtaButton href="#book">Book Appointment</CtaButton>
+          <CtaButton href="#contact">Book Appointment</CtaButton>
         </div>
         <button className="rounded-lg p-2 text-navy lg:hidden" onClick={() => setOpen(!open)} aria-label="Toggle menu">
           {open ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
@@ -45,7 +44,7 @@ export function Header() {
         <div className="border-t border-border bg-background lg:hidden">
           <Container className="grid gap-1 py-4">
             {NAV.map(([l, h]) => <a key={h} href={h} onClick={() => setOpen(false)} className="rounded-lg px-2 py-3 font-medium text-navy hover:bg-muted">{l}</a>)}
-            <CtaButton href="#book" className="mt-2">Book Appointment</CtaButton>
+            <CtaButton href="#contact" className="mt-2">Book Appointment</CtaButton>
           </Container>
         </div>
       )}
@@ -68,13 +67,16 @@ export function Hero() {
             Explore diabetes management, diabetic foot care, nutrition, metabolic health and diagnostic services at The Diabetes Centre Karachi.
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <CtaButton href="#book"><CalendarCheck className="h-5 w-5" />Book Appointment</CtaButton>
+            <CtaButton href="#contact"><CalendarCheck className="h-5 w-5" />Book Appointment</CtaButton>
             <CtaButton href={CONTACT.phoneHref} variant="outline" onClick={() => trackAdsConversion("call")}><PhoneCall className="h-5 w-5" />Call Now</CtaButton>
           </div>
         </div>
-        <div id="book" className="relative scroll-mt-24">
-          <img src={IMG.hero} alt="Healthcare professional checking a patient's blood sugar" className="absolute -right-10 -top-10 hidden h-[115%] w-[85%] rounded-[2rem] object-cover opacity-90 lg:block" />
-          <AppointmentForm className="relative lg:mt-24 lg:-ml-6" />
+        <div className="relative">
+          <img src={IMG.hero} alt="Healthcare professional checking a patient's blood sugar" className="aspect-[4/3] w-full rounded-[2rem] object-cover shadow-soft lg:aspect-[5/4]" />
+          <div className="absolute -bottom-5 -left-3 rounded-2xl border border-border bg-card p-4 shadow-soft sm:-left-5 sm:p-5">
+            <p className="text-sm font-bold text-navy">The Diabetes Centre</p>
+            <p className="mt-1 text-xs text-muted-foreground">Diabetes & related healthcare in Karachi</p>
+          </div>
         </div>
       </Container>
     </section>
@@ -149,7 +151,7 @@ export function About() {
             <p>The Diabetes Centre is focused on providing healthcare services related to diabetes management, metabolic health, diabetic foot care, nutrition and diagnostic testing.</p>
             <p>Our aim is to make essential healthcare and screening services accessible to patients through a coordinated healthcare experience.</p>
           </div>
-          <CtaButton href="#book" className="mt-8">Book a Consultation</CtaButton>
+          <CtaButton href="#contact" className="mt-8">Book a Consultation</CtaButton>
         </div>
       </div>
     </Section>
@@ -220,7 +222,7 @@ export function Services() {
                 </li>
               ))}
             </ul>
-            <CtaButton href="#book" className="mt-6 w-full">Book Appointment</CtaButton>
+            <CtaButton href="#contact" className="mt-6 w-full">Book Appointment</CtaButton>
           </Card>
         ))}
       </div>
@@ -271,7 +273,7 @@ export function Packages() {
                 ))}
               </ul>
             </div>
-            <CtaButton href="#book" className="mt-7 w-full" onClick={() => trackAdsConversion("package")}>Book This Package</CtaButton>
+            <CtaButton href="#contact" className="mt-7 w-full" onClick={() => trackAdsConversion("package")}>Book This Package</CtaButton>
           </Card>
         ))}
       </div>
@@ -284,7 +286,7 @@ export function Packages() {
 
 const STEPS = [
   [CalendarCheck, "Select Your Service", "Choose the healthcare service or screening package you need."],
-  [MessageCircle, "Contact Our Team", "Submit your appointment request or contact us through WhatsApp."],
+  [MessageCircle, "Contact Our Team", "Call or message our team to discuss your service and appointment needs."],
   [MapPin, "Visit The Diabetes Centre", "Our team will assist you with appointment arrangements."],
 ] as const;
 
@@ -335,7 +337,7 @@ const FAQS = [
   ["What is PedoScan foot pressure assessment?", "PedoScan is listed as a foot pressure assessment service for evaluating pressure distribution under the feet."],
   ["Are nutrition and personalized diet services available?", "Yes. Clinical nutrition consultation and personalized diet planning are available."],
   ["What laboratory tests are available?", "Listed tests include CBC, FBS, HbA1c, lipid profile, LFTs, RFTs, urine routine examination, and sodium and potassium."],
-  ["How can I book an appointment?", "Select a service and submit the appointment request form, call 0337-1111832, or contact the team on WhatsApp."],
+  ["How can I book an appointment?", "Select a service, then call 0337-1111832 or contact the team on WhatsApp to discuss appointment availability."],
   ["Where is The Diabetes Centre located?", "Rafah-e-Aam Society, Shah Faisal Avenue, Karachi, Pakistan."],
 ];
 
@@ -395,7 +397,7 @@ export function FinalCta() {
         <h2 className="text-3xl font-extrabold text-primary-foreground sm:text-4xl">Take the First Step Towards Better Health</h2>
         <p className="mx-auto mt-4 max-w-xl text-primary-foreground/85">Contact The Diabetes Centre to learn more about our healthcare services and appointment availability.</p>
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-          <CtaButton href="#book" variant="light"><CalendarCheck className="h-5 w-5" />Book Your Appointment</CtaButton>
+          <CtaButton href="#contact" variant="light"><CalendarCheck className="h-5 w-5" />Book Your Appointment</CtaButton>
           <CtaButton href={CONTACT.whatsappHref} variant="ghostLight" onClick={() => trackAdsConversion("whatsapp")}><MessageCircle className="h-5 w-5" />WhatsApp Us</CtaButton>
         </div>
       </div>
@@ -424,7 +426,7 @@ export function MobileBar() {
     <div className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-3 gap-2 border-t border-border bg-background/95 p-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] shadow-soft backdrop-blur sm:hidden">
       <CtaButton href={CONTACT.phoneHref} variant="outline" className="min-h-12 rounded-xl px-2 text-xs" onClick={() => trackAdsConversion("call")}><Phone className="h-4 w-4" />Call Now</CtaButton>
       <CtaButton href={CONTACT.whatsappHref} variant="outline" className="min-h-12 rounded-xl border-cyan px-2 text-xs" onClick={() => trackAdsConversion("whatsapp")}><MessageCircle className="h-4 w-4" />WhatsApp</CtaButton>
-      <CtaButton href="#book" className="min-h-12 rounded-xl px-2 text-xs"> <CalendarCheck className="h-4 w-4" />Book</CtaButton>
+      <CtaButton href="#contact" className="min-h-12 rounded-xl px-2 text-xs"> <CalendarCheck className="h-4 w-4" />Book</CtaButton>
     </div>
   );
 }
