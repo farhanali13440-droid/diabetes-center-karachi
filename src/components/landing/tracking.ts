@@ -17,15 +17,10 @@ const conversionLabels: Record<ConversionKind, string | undefined> = {
 };
 
 export function initializeGoogleAds() {
-  if (!conversionId || typeof window === "undefined" || window.gtag) return;
+  if (!conversionId || typeof window === "undefined") return;
   window.dataLayer = window.dataLayer ?? [];
-  window.gtag = (...args: unknown[]) => { window.dataLayer?.push(args); };
-  window.gtag("js", new Date());
+  window.gtag = window.gtag ?? ((...args: unknown[]) => { window.dataLayer?.push(args); });
   window.gtag("config", conversionId);
-  const script = document.createElement("script");
-  script.async = true;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(conversionId)}`;
-  document.head.appendChild(script);
 }
 
 export function trackAdsConversion(kind: ConversionKind) {
