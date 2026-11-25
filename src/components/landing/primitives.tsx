@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 export const CONTACT = {
   phone: "0337-1111832",
   phoneHref: "tel:+923371111832",
-  whatsappHref: "https://wa.me/923371111832",
+  whatsappHref: "https://wa.me/92337111832",
   address: "Rafah-e-Aam Society, Shah Faisal Avenue, Karachi, Pakistan.",
   mapsDirectionsUrl: "https://www.google.com/maps/dir/?api=1&destination=Rafah-e-Aam%20Society%2C%20Shah%20Faisal%20Avenue%2C%20Karachi%2C%20Pakistan",
 };
