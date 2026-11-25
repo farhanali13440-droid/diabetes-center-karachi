@@ -49,8 +49,8 @@
 
   /* Brand palette */
   --tdc-navy: oklch(0.265 0.065 253);
-  --tdc-blue: oklch(0.505 0.19 258);
-  --tdc-cyan: oklch(0.76 0.12 213);
+  --tdc-blue: oklch(0.462 0.143 253);
+  --tdc-cyan: oklch(0.696 0.135 233);
   --tdc-white: oklch(1 0 0);
   --tdc-surface: oklch(0.978 0.008 245);
   --tdc-surface-strong: oklch(0.95 0.018 235);
