@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {
   Activity, Apple, Baby, CalendarCheck, ChevronDown, Clock, Droplet, Eye, Footprints, HeartPulse,
-  Mail, MapPin, Menu, MessageCircle, Phone, ShieldCheck, Star, Stethoscope, Syringe, Users, X, Microscope, Scale, Brain, ClipboardList, PhoneCall,
+  MapPin, Menu, MessageCircle, Phone, ShieldCheck, Stethoscope, X, Microscope, Scale, ClipboardList, PhoneCall,
 } from "lucide-react";
 import { CONTACT, Card, Container, CtaButton, IconBadge, Section, SectionHeading } from "./primitives";
 import { AppointmentForm } from "./AppointmentForm";
@@ -363,12 +363,6 @@ export function Faqs() {
 }
 
 export function Contact() {
-  const items = [
-    [MapPin, "Address", CONTACT.address, undefined],
-    [Phone, "Phone", CONTACT.phone, CONTACT.phoneHref],
-    [Mail, "Email", CONTACT.email, `mailto:${CONTACT.email}`],
-    [Clock, "Timings", CONTACT.hours, undefined],
-  ] as const;
   return (
     <Section id="contact">
       <SectionHeading eyebrow="Contact & Location" title="Visit The Diabetes Centre Karachi" />
