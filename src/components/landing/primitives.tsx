@@ -36,7 +36,7 @@ type BtnProps = { href: string; children: ReactNode; variant?: "primary" | "outl
 export function CtaButton({ href, children, variant = "primary", className, onClick }: BtnProps) {
   const styles = {
     primary: "bg-primary !text-primary-foreground hover:bg-navy shadow-soft",
-    outline: "border-2 border-primary !text-primary hover:bg-primary hover:!text-primary-foreground",
+    outline: "border-2 border-primary bg-background !text-primary hover:bg-primary hover:!text-primary-foreground",
     light: "bg-background !text-navy hover:bg-cyan-soft",
     ghostLight: "border-2 border-primary-foreground/40 !text-primary-foreground hover:bg-primary-foreground/10",
   }[variant];
