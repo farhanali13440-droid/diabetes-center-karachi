@@ -423,10 +423,20 @@ export function Footer() {
 
 export function MobileBar() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-3 gap-2 border-t border-border bg-background/95 p-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] shadow-soft backdrop-blur sm:hidden">
-      <CtaButton href={CONTACT.phoneHref} variant="outline" className="min-h-12 rounded-xl px-2 text-xs" onClick={() => trackAdsConversion("call")}><Phone className="h-4 w-4" />Call Now: 0337-1111832</CtaButton>
-      <CtaButton href={CONTACT.whatsappHref} variant="outline" className="min-h-12 rounded-xl border-cyan px-2 text-xs" onClick={() => trackAdsConversion("whatsapp")}><MessageCircle className="h-4 w-4" />WhatsApp</CtaButton>
-      <CtaButton href={CONTACT.whatsappHref} className="min-h-12 rounded-xl px-2 text-xs" onClick={() => trackAdsConversion("whatsapp")}> <CalendarCheck className="h-4 w-4" />Book</CtaButton>
-    </div>
+    <>
+      <div className="fixed bottom-24 right-4 z-[60] flex flex-col gap-3 sm:bottom-6 sm:right-6">
+        <a href={CONTACT.phoneHref} aria-label={`Call The Diabetes Centre at ${CONTACT.phone}`} title={`Call ${CONTACT.phone}`} onClick={() => trackAdsConversion("call")} className="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg ring-2 ring-background transition-transform hover:scale-105 hover:bg-navy focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring">
+          <Phone className="h-6 w-6" />
+        </a>
+        <a href={CONTACT.whatsappHref} target="_blank" rel="noopener noreferrer" aria-label="Chat with The Diabetes Centre on WhatsApp" title="WhatsApp" onClick={() => trackAdsConversion("whatsapp")} className="flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-lg ring-2 ring-background transition-transform hover:scale-105 hover:bg-[#1DA851] focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring">
+          <MessageCircle className="h-6 w-6" />
+        </a>
+      </div>
+      <div className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-3 gap-2 border-t border-border bg-background/95 p-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] shadow-soft backdrop-blur sm:hidden">
+        <CtaButton href={CONTACT.phoneHref} variant="outline" className="min-h-12 rounded-xl px-2 text-xs" onClick={() => trackAdsConversion("call")}><Phone className="h-4 w-4" />Call Now: 0337-1111832</CtaButton>
+        <CtaButton href={CONTACT.whatsappHref} variant="outline" className="min-h-12 rounded-xl border-cyan px-2 text-xs" onClick={() => trackAdsConversion("whatsapp")}><MessageCircle className="h-4 w-4" />WhatsApp</CtaButton>
+        <CtaButton href={CONTACT.whatsappHref} className="min-h-12 rounded-xl px-2 text-xs" onClick={() => trackAdsConversion("whatsapp")}> <CalendarCheck className="h-4 w-4" />Book</CtaButton>
+      </div>
+    </>
   );
 }
