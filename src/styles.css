@@ -183,3 +183,83 @@
     h1 { overflow-wrap: anywhere; }
   }
 }
+
+
+/* Landing page CTA buttons: explicit state colors prevent inherited Shadcn hover styles
+   from making labels/icons disappear on hover or keyboard focus. */
+@layer components {
+  .tdc-cta {
+    display: inline-flex;
+    min-width: 0;
+    max-width: 100%;
+    min-height: 3rem;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border: 2px solid transparent;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 600;
+    line-height: 1.25;
+    text-align: center;
+    text-decoration: none;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    transition: background-color 160ms ease, color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+  }
+
+  .tdc-cta > svg {
+    flex: 0 0 auto;
+  }
+
+  .tdc-cta-primary {
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+    box-shadow: var(--shadow-soft);
+  }
+  .tdc-cta-primary:hover,
+  .tdc-cta-primary:focus-visible {
+    background-color: var(--navy);
+    color: var(--primary-foreground);
+  }
+
+  .tdc-cta-outline {
+    border-color: var(--primary);
+    background-color: var(--background);
+    color: var(--primary);
+  }
+  .tdc-cta-outline:hover,
+  .tdc-cta-outline:focus-visible {
+    border-color: var(--primary);
+    background-color: var(--primary);
+    color: var(--primary-foreground);
+  }
+
+  .tdc-cta-light {
+    background-color: var(--background);
+    color: var(--navy);
+  }
+  .tdc-cta-light:hover,
+  .tdc-cta-light:focus-visible {
+    background-color: var(--cyan-soft);
+    color: var(--navy);
+  }
+
+  .tdc-cta-ghostLight {
+    border-color: color-mix(in oklab, var(--primary-foreground) 40%, transparent);
+    background-color: transparent;
+    color: var(--primary-foreground);
+  }
+  .tdc-cta-ghostLight:hover,
+  .tdc-cta-ghostLight:focus-visible {
+    border-color: color-mix(in oklab, var(--primary-foreground) 65%, transparent);
+    background-color: color-mix(in oklab, var(--primary-foreground) 10%, transparent);
+    color: var(--primary-foreground);
+  }
+
+  .tdc-cta:focus-visible {
+    outline: 3px solid var(--ring);
+    outline-offset: 3px;
+  }
+}
