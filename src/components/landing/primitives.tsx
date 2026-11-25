@@ -35,14 +35,16 @@ export function SectionHeading({ eyebrow, title, intro, center = true, invert = 
 type BtnProps = { href: string; children: ReactNode; variant?: "primary" | "outline" | "light" | "ghostLight"; className?: string; onClick?: () => void };
 export function CtaButton({ href, children, variant = "primary", className, onClick }: BtnProps) {
   const styles = {
-    primary: "bg-primary text-primary-foreground hover:bg-navy shadow-soft",
-    outline: "border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground",
-    light: "bg-background text-navy hover:bg-cyan-soft",
-    ghostLight: "border-2 border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/10",
+    primary: "bg-primary !text-primary-foreground hover:bg-navy shadow-soft",
+    outline: "border-2 border-primary !text-primary hover:bg-primary hover:!text-primary-foreground",
+    light: "bg-background !text-navy hover:bg-cyan-soft",
+    ghostLight: "border-2 border-primary-foreground/40 !text-primary-foreground hover:bg-primary-foreground/10",
   }[variant];
   return (
-    <Button asChild className={cn("h-auto min-h-12 gap-2 whitespace-normal rounded-full px-6 text-sm font-semibold sm:text-base", styles, className)}>
-      <a href={href} onClick={onClick}>{children}</a>
+    <Button asChild className={cn("h-auto min-h-12 min-w-0 max-w-full items-center justify-center gap-2 whitespace-normal break-words rounded-full px-4 py-3 text-center text-sm font-semibold leading-tight sm:px-6 sm:text-base [&>svg]:shrink-0", styles, className)}>
+      <a href={href} onClick={onClick}>
+        {typeof children === "string" ? <span className="min-w-0 whitespace-normal break-words text-center leading-tight">{children}</span> : children}
+      </a>
     </Button>
   );
 }
