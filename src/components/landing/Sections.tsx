@@ -86,27 +86,32 @@ export function Hero() {
 }
 
 const CONCERNS = [
-  [Droplet, "High blood sugar", "Frequent high readings or a recent diagnosis of Type 1 or Type 2 diabetes."],
-  [Activity, "Unstable glucose levels", "Sugar levels that swing despite medication or insulin."],
-  [Footprints, "Foot pain or numbness", "Tingling, burning, wounds that heal slowly or loss of sensation."],
-  [Eye, "Blurred vision", "Changes in eyesight that may signal diabetic eye disease."],
-  [Scale, "Weight & metabolism", "Weight gain, fatigue or pre-diabetes that needs early attention."],
-  [Baby, "Diabetes in pregnancy", "Gestational diabetes requiring careful monitoring for mother and baby."],
+  [Droplet, "Diabetes & Blood Sugar Management", "Support for blood sugar monitoring, diabetes care and ongoing glucose management.", "#services"],
+  [Footprints, "Diabetic Foot Problems", "Assessment and support for foot health, pressure concerns and ulcer-risk prevention.", "#services"],
+  [Activity, "Thyroid & Hormonal Health", "Clinical support for thyroid disorders and hormonal health concerns.", "#services"],
+  [Scale, "Weight & Obesity Management", "Assessment and guidance to support weight and metabolic health goals.", "#services"],
+  [Apple, "Nutrition & Diet Planning", "Personalized nutrition guidance for diabetes, pregnancy and weight management.", "#services"],
+  [Microscope, "Laboratory Testing", "Access the listed laboratory and diagnostic investigations.", "#services"],
 ] as const;
 
 export function Concerns() {
   return (
     <Section>
-      <SectionHeading eyebrow="Patient Concerns" title="Are You Experiencing Any of These?" intro="Early, specialist care prevents complications. If any of these sound familiar, our team can help." />
+      <SectionHeading
+        eyebrow="Patient Health Concerns"
+        title="What Healthcare Support Are You Looking For?"
+        intro="Explore healthcare services designed to support diabetes management, metabolic health and related medical conditions."
+      />
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-        {CONCERNS.map(([Icon, t, d]) => (
-          <Card key={t} className="flex gap-4">
-            <IconBadge><Icon className="h-6 w-6" /></IconBadge>
-            <div><h3 className="font-bold text-navy">{t}</h3><p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{d}</p></div>
-          </Card>
+        {CONCERNS.map(([Icon, title, description, href]) => (
+          <a key={title} href={href} className="group block rounded-3xl border border-border bg-card p-6 shadow-card transition-all duration-200 hover:-translate-y-1 hover:border-cyan/50 hover:shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring">
+            <IconBadge className="h-14 w-14 transition-colors group-hover:bg-cyan-soft"><Icon className="h-7 w-7" /></IconBadge>
+            <h3 className="mt-5 text-lg font-bold text-navy">{title}</h3>
+            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{description}</p>
+            <span className="mt-5 inline-flex items-center gap-2 text-sm font-semibold text-royal">Explore service <span aria-hidden="true">→</span></span>
+          </a>
         ))}
       </div>
-      <div className="mt-10 text-center"><CtaButton href="#book">Get Assessed Today</CtaButton></div>
     </Section>
   );
 }
@@ -160,25 +165,70 @@ export function About() {
 }
 
 const SERVICES = [
-  [Stethoscope, "Diabetes Consultation", "Diagnosis and management of Type 1, Type 2 and pre-diabetes."],
-  [Syringe, "Insulin Management", "Starting, adjusting and training on insulin therapy."],
-  [Footprints, "Diabetic Foot Care", "Foot screening, wound care and ulcer prevention."],
-  [Eye, "Eye Screening", "Retinal checks for early detection of diabetic retinopathy."],
-  [Apple, "Diet & Nutrition", "Practical meal plans suited to Pakistani diets."],
-  [Brain, "Diabetes Education", "Self-monitoring, lifestyle and medication guidance."],
+  {
+    icon: Droplet,
+    title: "Diabetes Care & Management",
+    description: "Comprehensive support for diabetes monitoring, treatment and patient education.",
+    items: ["Type 1 & Type 2 Diabetes Management", "Gestational Diabetes Management", "Blood Sugar Monitoring", "HbA1c Testing", "Diabetes Education"],
+  },
+  {
+    icon: Footprints,
+    title: "Diabetic Foot Care",
+    description: "Foot screening and assessment services focused on identifying pressure concerns and ulcer risk.",
+    items: ["Comprehensive Foot Screening", "Diabetic Foot Assessment", "PedoScan Foot Pressure Assessment", "Foot Ulcer Risk Assessment", "Orthotic Consultation"],
+  },
+  {
+    icon: Apple,
+    title: "Nutrition & Dietetics",
+    description: "Clinical nutrition guidance and personalized planning for different health needs.",
+    items: ["Clinical Nutrition Consultation", "Personalized Diet Planning", "Diabetes Nutrition Management", "Pregnancy Nutrition Planning", "Weight Management Nutrition"],
+  },
+  {
+    icon: Activity,
+    title: "Endocrinology & Thyroid Care",
+    description: "Consultation and care for thyroid disorders and hormonal health concerns.",
+    items: ["Thyroid Disorders", "Hormonal Imbalance", "Endocrine Health Consultation"],
+  },
+  {
+    icon: Scale,
+    title: "Obesity & Weight Management",
+    description: "Assessment and personalized planning to support weight and metabolic health.",
+    items: ["Weight Management Assessment", "Obesity Assessment", "Metabolic Health Assessment", "Personalized Diet Plans"],
+  },
+  {
+    icon: Microscope,
+    title: "Laboratory & Diagnostic Services",
+    description: "A range of laboratory investigations to support health assessment and monitoring.",
+    items: ["Complete Blood Count (CBC)", "Fasting Blood Sugar (FBS)", "HbA1c", "Lipid Profile", "Liver Function Tests (LFTs)", "Renal Function Tests (RFTs)", "Urine Routine Examination", "Sodium & Potassium"],
+  },
 ] as const;
 
 export function Services() {
   return (
     <Section id="services" className="bg-muted">
-      <SectionHeading eyebrow="Our Services" title="Complete Diabetes Care Under One Roof" />
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-        {SERVICES.map(([Icon, t, d]) => (
-          <Card key={t} className="transition-shadow hover:shadow-soft">
-            <IconBadge className="h-14 w-14 bg-gradient-to-br from-royal to-cyan text-primary-foreground"><Icon className="h-7 w-7" /></IconBadge>
-            <h3 className="mt-5 text-lg font-bold text-navy">{t}</h3>
-            <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{d}</p>
-            <a href="#book" className="mt-4 inline-block text-sm font-semibold text-royal hover:text-navy">Book this service →</a>
+      <SectionHeading
+        eyebrow="Our Healthcare Services"
+        title="Comprehensive Healthcare Services Under One Roof"
+      />
+      <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        {SERVICES.map(({ icon: Icon, title, description, items }) => (
+          <Card key={title} className="flex h-full flex-col transition-all duration-200 hover:-translate-y-1 hover:shadow-soft">
+            <div className="flex items-start gap-4">
+              <IconBadge className="h-14 w-14 bg-gradient-to-br from-royal to-cyan text-primary-foreground"><Icon className="h-7 w-7" /></IconBadge>
+              <div className="min-w-0 pt-1">
+                <h3 className="text-lg font-bold leading-snug text-navy">{title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-muted-foreground">{description}</p>
+              </div>
+            </div>
+            <ul className="mt-5 grid flex-1 content-start gap-2.5 border-t border-border pt-5">
+              {items.map(item => (
+                <li key={item} className="flex items-start gap-2.5 text-sm leading-relaxed text-foreground">
+                  <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-cyan" />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
+            <CtaButton href="#book" className="mt-6 w-full">Book Appointment</CtaButton>
           </Card>
         ))}
       </div>
@@ -187,27 +237,55 @@ export function Services() {
 }
 
 const PACKAGES = [
-  { name: "Basic Sugar Check", tests: ["Fasting blood sugar", "HbA1c", "Consultation"], featured: false },
-  { name: "Comprehensive Diabetes Screening", tests: ["HbA1c & blood sugar", "Lipid profile", "Kidney function", "Foot & eye screening", "Specialist consultation"], featured: true },
-  { name: "Annual Diabetes Review", tests: ["Full blood work", "Urine microalbumin", "Diet consultation", "Care plan review"], featured: false },
-];
+  {
+    name: "Basic Health Check-Up",
+    price: "PKR 8,960",
+    includes: ["CBC", "FBS", "Lipid Profile", "HbA1c", "LFTs", "RFTs", "Urine RE", "Na + K"],
+  },
+  {
+    name: "Complete Foot Screening",
+    price: "PKR 2,500",
+    includes: ["Diabetologist Consultation", "Diabetic Foot Education", "Foot Assessment", "Pedo-Scanning", "Orthotic Consultation"],
+  },
+  {
+    name: "Metabolic Control Package",
+    price: "PKR 2,200",
+    includes: ["Weight Management", "Fasting Insulin Level", "NPT", "TSH", "Personalized Diet Plan"],
+  },
+] as const;
 
 export function Packages() {
   return (
     <Section id="packages">
-      <SectionHeading eyebrow="Health Screening" title="Diabetes Screening Packages" intro="Contact us for current package prices and availability." />
-      <div className="grid gap-5 lg:grid-cols-3 lg:items-center">
-        {PACKAGES.map((p) => (
-          <div key={p.name} className={p.featured ? "rounded-3xl bg-navy p-7 text-primary-foreground shadow-soft lg:py-10" : "rounded-3xl border border-border bg-card p-7 shadow-card"}>
-            {p.featured && <span className="mb-4 inline-block rounded-full bg-cyan px-3 py-1 text-xs font-bold text-navy">Most Popular</span>}
-            <h3 className={`text-xl font-bold ${p.featured ? "" : "text-navy"}`}>{p.name}</h3>
-            <ul className="mt-5 grid gap-2.5">
-              {p.tests.map((t) => <li key={t} className="flex items-center gap-2.5 text-sm"><ShieldCheck className={`h-4 w-4 ${p.featured ? "text-cyan" : "text-royal"}`} />{t}</li>)}
-            </ul>
-            <CtaButton href="#book" variant={p.featured ? "light" : "outline"} className="mt-7 w-full">Book Package</CtaButton>
-          </div>
+      <SectionHeading
+        eyebrow="Health Screening Packages"
+        title="Take a Proactive Step Towards Better Health"
+        intro="Explore the available health screening packages and request an appointment with our team."
+      />
+      <div className="grid items-stretch gap-5 lg:grid-cols-3">
+        {PACKAGES.map((pkg, index) => (
+          <Card key={pkg.name} className={`flex h-full flex-col ${index === 1 ? "border-royal/40 shadow-soft lg:-translate-y-2" : ""}`}>
+            {index === 1 && <span className="mb-4 inline-flex w-fit rounded-full bg-cyan-soft px-3 py-1 text-xs font-bold text-royal">Foot Screening</span>}
+            <h3 className="text-xl font-bold leading-snug text-navy">{pkg.name}</h3>
+            <p className="mt-4 text-3xl font-extrabold tracking-tight text-royal">{pkg.price}</p>
+            <div className="mt-5 border-t border-border pt-5">
+              <p className="text-xs font-bold uppercase tracking-wider text-muted-foreground">Package includes</p>
+              <ul className="mt-4 grid flex-1 content-start gap-3">
+                {pkg.includes.map(item => (
+                  <li key={item} className="flex items-start gap-2.5 text-sm leading-relaxed text-foreground">
+                    <ShieldCheck className="mt-0.5 h-4 w-4 shrink-0 text-cyan" />
+                    <span>{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <CtaButton href="#book" className="mt-7 w-full">Book This Package</CtaButton>
+          </Card>
         ))}
       </div>
+      <p className="mt-6 text-center text-xs leading-relaxed text-muted-foreground">
+        Package prices and inclusions are reproduced as supplied and should be confirmed by The Diabetes Centre before publication.
+      </p>
     </Section>
   );
 }
