@@ -170,3 +170,16 @@
     color: var(--color-foreground);
   }
 }
+
+
+/* Landing-page mobile comfort and fixed CTA clearance */
+@layer base {
+  html, body, #root { max-width: 100%; }
+  body { overflow-x: hidden; }
+  img, iframe, video { max-width: 100%; }
+  input, select, textarea, button { font: inherit; }
+  @media (max-width: 639px) {
+    body { padding-bottom: calc(4.75rem + env(safe-area-inset-bottom)); }
+    h1 { overflow-wrap: anywhere; }
+  }
+}
