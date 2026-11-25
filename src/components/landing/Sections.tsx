@@ -5,11 +5,12 @@ import {
 } from "lucide-react";
 import { CONTACT, Card, Container, CtaButton, IconBadge, Section, SectionHeading } from "./primitives";
 import { AppointmentForm } from "./AppointmentForm";
+import { trackAdsConversion } from "./tracking";
 import logo from "@/assets/tdc_logo.png.asset.json";
 
 const IMG = {
-  hero: "https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?w=1400&q=80&auto=format&fit=crop",
-  about: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1200&q=80&auto=format&fit=crop",
+  hero: "https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?w=1400&q=75&auto=format&fit=crop",
+  about: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1000&q=75&auto=format&fit=crop",
 };
 export const HERO_IMAGE = IMG.hero;
 
@@ -64,17 +65,12 @@ export function Hero() {
             Take Control of Your Diabetes <span className="text-royal">With Expert Care</span>
           </h1>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Complete diabetes diagnosis, treatment and long-term management under one roof — from blood sugar control to foot, eye and nutrition care.
+            Explore diabetes management, diabetic foot care, nutrition, metabolic health and diagnostic services at The Diabetes Centre Karachi.
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <CtaButton href="#book"><CalendarCheck className="h-5 w-5" />Book Appointment</CtaButton>
             <CtaButton href={CONTACT.phoneHref} variant="outline"><PhoneCall className="h-5 w-5" />Call Now</CtaButton>
           </div>
-          <dl className="mt-9 grid grid-cols-3 gap-4 border-t border-border pt-7">
-            {[["15+", "Years of care"], ["50k+", "Patients served"], ["6", "Specialised services"]].map(([n, l]) => (
-              <div key={l}><dt className="text-2xl font-extrabold text-navy sm:text-3xl">{n}</dt><dd className="mt-1 text-xs text-muted-foreground sm:text-sm">{l}</dd></div>
-            ))}
-          </dl>
         </div>
         <div id="book" className="relative scroll-mt-24">
           <img src={IMG.hero} alt="Healthcare professional checking a patient's blood sugar" className="absolute -right-10 -top-10 hidden h-[115%] w-[85%] rounded-[2rem] object-cover opacity-90 lg:block" />
@@ -275,7 +271,7 @@ export function Packages() {
                 ))}
               </ul>
             </div>
-            <CtaButton href="#book" className="mt-7 w-full">Book This Package</CtaButton>
+            <CtaButton href="#book" className="mt-7 w-full" onClick={() => trackAdsConversion("package")}>Book This Package</CtaButton>
           </Card>
         ))}
       </div>
@@ -317,13 +313,13 @@ const REVIEW_PLACEHOLDERS = ["Google patient review", "Google patient review", "
 export function Testimonials() {
   return (
     <Section>
-      <SectionHeading eyebrow="Patient Testimonials" title="Experiences Shared by Our Patients" intro="Patient feedback will be added here after genuine Google reviews are supplied." />
+      <SectionHeading eyebrow="Patient Testimonials" title="Experiences Shared by Our Patients" intro="Verified patient feedback will be displayed here when genuine reviews are available." />
       <div className="grid gap-5 md:grid-cols-3">
         {REVIEW_PLACEHOLDERS.map((label, index) => (
           <Card key={index} className="flex min-h-40 flex-col justify-center border-dashed text-center">
             <MessageCircle className="mx-auto h-7 w-7 text-royal" />
-            <p className="mt-3 font-semibold text-navy">{label}</p>
-            <p className="mt-1 text-sm text-muted-foreground">Editable placeholder — add an authentic patient review here.</p>
+            <p className="mt-3 font-semibold text-navy">Patient feedback</p>
+            <p className="mt-1 text-sm text-muted-foreground">Genuine patient review pending verification.</p>
           </Card>
         ))}
       </div>
@@ -378,17 +374,15 @@ export function Contact() {
           <Card>
             <IconBadge><Phone className="h-6 w-6" /></IconBadge>
             <p className="mt-4 text-sm font-semibold text-muted-foreground">Phone</p>
-            <a href={CONTACT.phoneHref} className="mt-1 block font-bold text-navy hover:text-royal">{CONTACT.phone}</a>
+            <a href={CONTACT.phoneHref} onClick={() => trackAdsConversion("call")} className="mt-1 block font-bold text-navy hover:text-royal">{CONTACT.phone}</a>
             <div className="mt-5 flex flex-col gap-3 sm:flex-row">
-              <CtaButton href={CONTACT.phoneHref} variant="outline"><PhoneCall className="h-4 w-4" />Call The Centre</CtaButton>
-              <CtaButton href={CONTACT.whatsappHref}><MessageCircle className="h-4 w-4" />WhatsApp Us</CtaButton>
+              <CtaButton href={CONTACT.phoneHref} variant="outline" onClick={() => trackAdsConversion("call")}><PhoneCall className="h-4 w-4" />Call The Centre</CtaButton>
+              <CtaButton href={CONTACT.whatsappHref} onClick={() => trackAdsConversion("whatsapp")}><MessageCircle className="h-4 w-4" />WhatsApp Us</CtaButton>
             </div>
           </Card>
           <CtaButton href={CONTACT.mapsDirectionsUrl} variant="outline"><MapPin className="h-4 w-4" />Get Directions</CtaButton>
         </div>
-        <div className="flex min-h-80 items-center justify-center rounded-3xl border border-dashed border-border bg-muted p-8 text-center">
-          <div><MapPin className="mx-auto h-8 w-8 text-royal" /><p className="mt-3 font-semibold text-navy">Google Maps embed placeholder</p><p className="mt-1 max-w-sm text-sm text-muted-foreground">Add the verified hospital map pin or Google Maps embed URL before publishing. No map pin has been assumed.</p></div>
-        </div>
+        <iframe title="Map search for The Diabetes Centre address in Karachi" src="https://www.google.com/maps?q=Rafah-e-Aam%20Society%2C%20Shah%20Faisal%20Avenue%2C%20Karachi%2C%20Pakistan&output=embed" className="min-h-80 w-full rounded-3xl border border-border" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
       </div>
     </Section>
   );
@@ -402,7 +396,7 @@ export function FinalCta() {
         <p className="mx-auto mt-4 max-w-xl text-primary-foreground/85">Contact The Diabetes Centre to learn more about our healthcare services and appointment availability.</p>
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
           <CtaButton href="#book" variant="light"><CalendarCheck className="h-5 w-5" />Book Your Appointment</CtaButton>
-          <CtaButton href={CONTACT.whatsappHref} variant="ghostLight"><MessageCircle className="h-5 w-5" />WhatsApp Us</CtaButton>
+          <CtaButton href={CONTACT.whatsappHref} variant="ghostLight" onClick={() => trackAdsConversion("whatsapp")}><MessageCircle className="h-5 w-5" />WhatsApp Us</CtaButton>
         </div>
       </div>
     </section>
@@ -427,9 +421,10 @@ export function Footer() {
 
 export function MobileBar() {
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-2 gap-2 border-t border-border bg-background p-3 sm:hidden">
-      <CtaButton href={CONTACT.phoneHref} variant="outline" className="min-h-11"><Phone className="h-4 w-4" />Call</CtaButton>
-      <CtaButton href="#book" className="min-h-11"><CalendarCheck className="h-4 w-4" />Book Now</CtaButton>
+    <div className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-3 gap-2 border-t border-border bg-background/95 p-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] shadow-soft backdrop-blur sm:hidden">
+      <CtaButton href={CONTACT.phoneHref} variant="outline" className="min-h-12 rounded-xl px-2 text-xs" onClick={() => trackAdsConversion("call")}><Phone className="h-4 w-4" />Call Now</CtaButton>
+      <CtaButton href={CONTACT.whatsappHref} variant="outline" className="min-h-12 rounded-xl border-cyan px-2 text-xs" onClick={() => trackAdsConversion("whatsapp")}><MessageCircle className="h-4 w-4" />WhatsApp</CtaButton>
+      <CtaButton href="#book" className="min-h-12 rounded-xl px-2 text-xs"> <CalendarCheck className="h-4 w-4" />Book</CtaButton>
     </div>
   );
 }
