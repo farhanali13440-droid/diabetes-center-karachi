@@ -1,8 +1,8 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { About, Concerns, Contact, Faqs, FinalCta, Footer, HERO_IMAGE, Header, Hero, HowItWorks, MobileBar, Packages, Services, Testimonials, WhyChoose } from "@/components/landing/Sections";
 
-const title = "The Diabetes Centre Karachi | Book a Diabetes Appointment";
-const description = "Specialist diabetes care in Karachi: consultations, insulin management, foot and eye screening, nutrition and screening packages. Book today.";
+const title = "Diabetes Care & Healthcare Services in Karachi | The Diabetes Centre";
+const description = "Explore diabetes management, diabetic foot care, nutrition, endocrinology, weight management and diagnostic services at The Diabetes Centre Karachi. Book an appointment.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -12,6 +12,8 @@ export const Route = createFileRoute("/")({
       { property: "og:title", content: title },
       { property: "og:description", content: description },
       { property: "og:type", content: "website" },
+      { property: "og:locale", content: "en_PK" },
+      { name: "keywords", content: "diabetes care Karachi, diabetes management Karachi, diabetic foot screening Karachi, HbA1c test Karachi, nutrition clinic Karachi, diagnostic laboratory Karachi" },
       { property: "og:image", content: HERO_IMAGE },
       { name: "twitter:card", content: "summary_large_image" },
       { name: "twitter:image", content: HERO_IMAGE },
