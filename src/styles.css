@@ -148,7 +148,7 @@
 
 @layer components {
   .tdc-container {
-    width: min(100% - 2rem,  min(100% - 2rem, 76rem));
+    width: min(76rem, calc(100% - 2rem));
     margin-inline: auto;
   }
 
