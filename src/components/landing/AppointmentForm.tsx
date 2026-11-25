@@ -12,10 +12,10 @@ export const APPOINTMENT_SERVICES = [
   "Health Screening Packages", "Other",
 ] as const;
 
-const pakistaniMobile = /^(?:(?:\\+92|0092)3\\d{9}|03\\d{9})$/;
+const pakistaniMobile = /^(?:(?:\+92|0092)3\d{9}|03\d{9})$/;
 const schema = z.object({
   name: z.string().trim().min(1, "Please enter your full name.").max(100, "Name is too long."),
-  phone: z.string().trim().transform(value => value.replace(/[\\s()-]/g, "")).pipe(z.string().regex(pakistaniMobile, "Enter a valid Pakistani mobile number, e.g. 03XX-XXXXXXX.")),
+  phone: z.string().trim().transform(value => value.replace(/[\s()-]/g, "")).pipe(z.string().regex(pakistaniMobile, "Enter a valid Pakistani mobile number, e.g. 03XX-XXXXXXX.")),
   service: z.enum(APPOINTMENT_SERVICES, { error: "Please select a service." }),
   preferredDate: z.string().min(1, "Please select your preferred appointment date.").refine(value => value >= todayLocal(), "Please select today or a future date."),
 });
