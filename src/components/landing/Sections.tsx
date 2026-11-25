@@ -5,6 +5,7 @@ import {
 } from "lucide-react";
 import { CONTACT, Card, Container, CtaButton, IconBadge, Section, SectionHeading } from "./primitives";
 import { AppointmentForm } from "./AppointmentForm";
+import logo from "@/assets/tdc_logo.png.asset.json";
 
 const IMG = {
   hero: "https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?w=1400&q=80&auto=format&fit=crop",
@@ -22,7 +23,7 @@ export function Header() {
     <header className="sticky top-0 z-50 border-b border-border bg-background/95 backdrop-blur">
       <Container className="flex h-16 items-center justify-between sm:h-20">
         <a href="#top" className="flex items-center gap-2.5">
-          <span className="flex h-10 w-10 items-center justify-center rounded-xl bg-navy text-primary-foreground"><Droplet className="h-5 w-5 fill-cyan text-cyan" /></span>
+          <img src={logo.url} alt="The Diabetes Centre logo" className="h-10 w-10 object-contain sm:h-12 sm:w-12" />
           <span className="leading-tight">
             <span className="block text-base font-extrabold text-navy sm:text-lg">The Diabetes Centre</span>
             <span className="block text-xs font-medium text-royal">Karachi</span>
@@ -334,7 +335,7 @@ export function Footer() {
     <footer className="bg-navy pb-24 pt-12 text-primary-foreground/80 sm:pb-12">
       <Container className="grid gap-8 sm:grid-cols-3">
         <div>
-          <p className="text-lg font-extrabold text-primary-foreground">The Diabetes Centre</p>
+          <div className="flex items-center gap-3"><span className="rounded-xl bg-background p-1.5"><img src={logo.url} alt="" className="h-8 w-8 object-contain" /></span><p className="text-lg font-extrabold text-primary-foreground">The Diabetes Centre</p></div>
           <p className="mt-2 text-sm">Specialist diabetes care in Karachi, Pakistan.</p>
         </div>
         <div className="grid gap-2 text-sm">{NAV.map(([l, h]) => <a key={h} href={h} className="hover:text-cyan">{l}</a>)}</div>
