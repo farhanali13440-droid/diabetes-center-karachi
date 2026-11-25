@@ -15,9 +15,9 @@ export const APPOINTMENT_SERVICES = [
 const pakistaniMobile = /^(?:(?:\\+92|0092)3\\d{9}|03\\d{9})$/;
 const schema = z.object({
   name: z.string().trim().min(1, "Please enter your full name.").max(100, "Name is too long."),
-  phone: z.string().trim().regex(pakistaniMobile, "Enter a valid Pakistani mobile number, e.g. 03XX-XXXXXXX."),
+  phone: z.string().trim().transform(value => value.replace(/[\\s()-]/g, "")).pipe(z.string().regex(pakistaniMobile, "Enter a valid Pakistani mobile number, e.g. 03XX-XXXXXXX.")),
   service: z.enum(APPOINTMENT_SERVICES, { error: "Please select a service." }),
-  preferredDate: z.string().min(1, "Please select your preferred appointment date."),
+  preferredDate: z.string().min(1, "Please select your preferred appointment date.").refine(value => value >= todayLocal(), "Please select today or a future date."),
 });
 
 const field = "h-12 w-full min-w-0 rounded-xl border border-input bg-background px-3 text-base text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-ring/30";
@@ -31,13 +31,13 @@ function todayLocal() {
 }
 
 export function AppointmentForm({ className }: { className?: string }) {
-  const formRef = useRef<HTMLFormElement>(null);
+  const submittingRef = useRef(false);
   const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error" | "unconfigured">("idle");
   const [message, setMessage] = useState("");
 
   const onSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (status === "submitting") return;
+    if (submittingRef.current || status === "submitting") return;
     const form = e.currentTarget;
     const raw = Object.fromEntries(new FormData(form));
     const result = schema.safeParse(raw);
@@ -52,6 +52,7 @@ export function AppointmentForm({ className }: { className?: string }) {
       return;
     }
 
+    submittingRef.current = true;
     setStatus("submitting");
     setMessage("");
     try {
@@ -68,6 +69,8 @@ export function AppointmentForm({ className }: { className?: string }) {
     } catch (error) {
       setStatus("error");
       setMessage(error instanceof Error ? error.message : "Something went wrong. Please call or WhatsApp our team.");
+    } finally {
+      submittingRef.current = false;
     }
   };
 
@@ -76,7 +79,7 @@ export function AppointmentForm({ className }: { className?: string }) {
       <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-cyan-soft text-royal"><CalendarDays className="h-5 w-5" /></div>
       <h2 className="text-2xl font-bold text-navy">Book Your Appointment</h2>
       <p className="mt-2 text-sm leading-relaxed text-muted-foreground">Share your details and preferred date. Our team will follow up.</p>
-      <form ref={formRef} onSubmit={onSubmit} className="mt-5 grid gap-4" noValidate>
+      <form onSubmit={onSubmit} className="mt-5 grid gap-4" noValidate>
         <label className={label}>Full Name
           <input required name="name" autoComplete="name" maxLength={100} placeholder="Enter your full name" className={field} />
         </label>
