@@ -28,3 +28,6 @@ use the editor.
   own key and store it in Secrets.
 - **Secrets.** Lovable manages them. Do not put secret values in the repo.
 <!-- LOVABLE:END -->
+
+- Keep the booking form presentation-only until a delivery service is connected; never display a received confirmation without delivery.
+- Use the shared contact configuration for telephone links so all booking entry points stay consistent.

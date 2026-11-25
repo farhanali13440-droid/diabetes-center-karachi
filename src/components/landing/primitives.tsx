@@ -1,9 +1,10 @@
 import type { ReactNode } from "react";
 import { cn } from "@/lib/utils";
+import { Button } from "@/components/ui/button";
 
 export const CONTACT = {
-  phone: "+92 XXX XXXXXXX",
-  phoneHref: "tel:+920000000000",
+  phone: "0337-1111832",
+  phoneHref: "tel:+923371111832",
   whatsappHref: "https://wa.me/920000000000",
   email: "info@thediabetescentre.pk",
   address: "Clinic address, Karachi, Pakistan",
@@ -41,9 +42,9 @@ export function CtaButton({ href, children, variant = "primary", className }: Bt
     ghostLight: "border-2 border-primary-foreground/40 text-primary-foreground hover:bg-primary-foreground/10",
   }[variant];
   return (
-    <a href={href} className={cn("inline-flex min-h-12 items-center justify-center gap-2 rounded-full px-6 text-sm font-semibold transition-colors sm:text-base", styles, className)}>
-      {children}
-    </a>
+    <Button asChild className={cn("h-auto min-h-12 gap-2 whitespace-normal rounded-full px-6 text-sm font-semibold sm:text-base", styles, className)}>
+      <a href={href}>{children}</a>
+    </Button>
   );
 }
 

@@ -1,0 +1,3 @@
+- [ ] Refine the header and hero to match the Step 2 brief.
+- [ ] Update the appointment fields and clickable contact number.
+- [ ] Verify desktop/mobile layout and form controls.
