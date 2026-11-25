@@ -68,7 +68,7 @@ export function Hero() {
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <CtaButton href={CONTACT.whatsappHref} onClick={() => trackAdsConversion("whatsapp")}><CalendarCheck className="h-5 w-5" />Book Appointment</CtaButton>
-            <CtaButton href={CONTACT.phoneHref} variant="outline" onClick={() => trackAdsConversion("call")}><PhoneCall className="h-5 w-5" />Call Now</CtaButton>
+            <CtaButton href={CONTACT.phoneHref} variant="outline" onClick={() => trackAdsConversion("call")}><PhoneCall className="h-5 w-5" />Call Now: 0337-1111832</CtaButton>
           </div>
         </div>
         <div className="relative">
@@ -424,7 +424,7 @@ export function Footer() {
 export function MobileBar() {
   return (
     <div className="fixed inset-x-0 bottom-0 z-50 grid grid-cols-3 gap-2 border-t border-border bg-background/95 p-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] shadow-soft backdrop-blur sm:hidden">
-      <CtaButton href={CONTACT.phoneHref} variant="outline" className="min-h-12 rounded-xl px-2 text-xs" onClick={() => trackAdsConversion("call")}><Phone className="h-4 w-4" />Call Now</CtaButton>
+      <CtaButton href={CONTACT.phoneHref} variant="outline" className="min-h-12 rounded-xl px-2 text-xs" onClick={() => trackAdsConversion("call")}><Phone className="h-4 w-4" />Call Now: 0337-1111832</CtaButton>
       <CtaButton href={CONTACT.whatsappHref} variant="outline" className="min-h-12 rounded-xl border-cyan px-2 text-xs" onClick={() => trackAdsConversion("whatsapp")}><MessageCircle className="h-4 w-4" />WhatsApp</CtaButton>
       <CtaButton href={CONTACT.whatsappHref} className="min-h-12 rounded-xl px-2 text-xs" onClick={() => trackAdsConversion("whatsapp")}> <CalendarCheck className="h-4 w-4" />Book</CtaButton>
     </div>
