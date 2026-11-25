@@ -117,17 +117,17 @@ export function Concerns() {
 }
 
 const WHY = [
-  [Users, "Multidisciplinary team", "Diabetologists, educators, dietitians and foot-care specialists working together."],
-  [Microscope, "Diagnostics on site", "Lab tests, HbA1c and screenings in the same visit — no running around."],
-  [ClipboardList, "Personalised care plans", "Treatment tailored to your lifestyle, goals and medical history."],
-  [HeartPulse, "Long-term follow-up", "Regular reviews to keep your sugar levels stable for years, not weeks."],
+  [Droplet, "Diabetes-Focused Healthcare", "Healthcare services focused on diabetes management and blood sugar monitoring."],
+  [Microscope, "Comprehensive Diagnostic Services", "Laboratory testing and diagnostic investigations to support health assessment."],
+  [Footprints, "Specialized Foot Care Services", "Foot screening, assessment, pressure assessment and orthotic consultation."],
+  [Apple, "Nutrition & Metabolic Health Support", "Nutrition consultation, personalized diet planning and weight-management support."],
 ] as const;
 
 export function WhyChoose() {
   return (
     <section className="bg-navy py-16 sm:py-20 lg:py-24">
       <Container>
-        <SectionHeading invert eyebrow="Why Choose Us" title="Why Patients Trust The Diabetes Centre" intro="A dedicated diabetes facility focused entirely on helping Karachi live better with diabetes." />
+        <SectionHeading invert eyebrow="Why Choose The Diabetes Centre?" title="Healthcare Focused on Your Wellbeing" />
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-6">
           {WHY.map(([Icon, t, d]) => (
             <div key={t} className="rounded-3xl border border-primary-foreground/10 bg-primary-foreground/5 p-6">
@@ -148,15 +148,11 @@ export function About() {
       <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
         <img src={IMG.about} alt="Modern clinic consultation room" className="aspect-[4/3] w-full rounded-[2rem] object-cover shadow-soft" loading="lazy" />
         <div>
-          <SectionHeading center={false} eyebrow="About TDC" title="Dedicated to Diabetes Care in Karachi" />
-          <p className="-mt-6 leading-relaxed text-muted-foreground">
-            The Diabetes Centre is a specialised healthcare facility offering comprehensive care for people living with diabetes and related conditions. We combine modern diagnostics, evidence-based treatment and patient education to help you manage your condition with confidence.
-          </p>
-          <ul className="mt-6 grid gap-3 sm:grid-cols-2">
-            {["Evidence-based treatment", "Patient education programmes", "Comfortable, modern facility", "Affordable care packages"].map((x) => (
-              <li key={x} className="flex items-center gap-2.5 text-sm font-medium text-navy"><ShieldCheck className="h-5 w-5 text-cyan" />{x}</li>
-            ))}
-          </ul>
+          <SectionHeading center={false} eyebrow="About TDC" title="Your Partner in Diabetes & Related Healthcare" />
+          <div className="-mt-6 space-y-4 leading-relaxed text-muted-foreground">
+            <p>The Diabetes Centre is focused on providing healthcare services related to diabetes management, metabolic health, diabetic foot care, nutrition and diagnostic testing.</p>
+            <p>Our aim is to make essential healthcare and screening services accessible to patients through a coordinated healthcare experience.</p>
+          </div>
           <CtaButton href="#book" className="mt-8">Book a Consultation</CtaButton>
         </div>
       </div>
@@ -291,17 +287,16 @@ export function Packages() {
 }
 
 const STEPS = [
-  [CalendarCheck, "Request appointment", "Fill the form or call us."],
-  [Phone, "Get a confirmation call", "We confirm your date and time."],
-  [Stethoscope, "Visit the centre", "Tests and specialist consultation."],
-  [HeartPulse, "Follow your care plan", "Ongoing support and reviews."],
+  [CalendarCheck, "Select Your Service", "Choose the healthcare service or screening package you need."],
+  [MessageCircle, "Contact Our Team", "Submit your appointment request or contact us through WhatsApp."],
+  [MapPin, "Visit The Diabetes Centre", "Our team will assist you with appointment arrangements."],
 ] as const;
 
 export function HowItWorks() {
   return (
     <Section className="bg-cyan-soft">
-      <SectionHeading eyebrow="How It Works" title="Booking Your Visit Is Simple" />
-      <ol className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+      <SectionHeading eyebrow="How to Book an Appointment" title="Getting Started Is Simple" />
+      <ol className="grid gap-6 md:grid-cols-3">
         {STEPS.map(([Icon, t, d], i) => (
           <li key={t} className="text-center">
             <div className="relative mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-background text-royal shadow-card">
@@ -317,22 +312,18 @@ export function HowItWorks() {
   );
 }
 
-const REVIEWS = [
-  ["Ayesha R.", "Gulshan-e-Iqbal", "My HbA1c dropped from 9.2 to 6.8 in six months. The team explained everything clearly and the diet plan was easy to follow."],
-  ["Muhammad T.", "DHA", "Having lab tests, foot check and consultation in one visit saved me so much time. Very professional staff."],
-  ["Farzana K.", "North Nazimabad", "They helped my mother start insulin safely and called regularly to check on her. Truly caring service."],
-];
+const REVIEW_PLACEHOLDERS = ["Google patient review", "Google patient review", "Google patient review"];
 
 export function Testimonials() {
   return (
     <Section>
-      <SectionHeading eyebrow="Patient Stories" title="What Our Patients Say" />
+      <SectionHeading eyebrow="Patient Testimonials" title="Experiences Shared by Our Patients" intro="Patient feedback will be added here after genuine Google reviews are supplied." />
       <div className="grid gap-5 md:grid-cols-3">
-        {REVIEWS.map(([n, a, q]) => (
-          <Card key={n}>
-            <div className="flex gap-0.5 text-cyan">{Array.from({ length: 5 }).map((_, i) => <Star key={i} className="h-4 w-4 fill-current" />)}</div>
-            <p className="mt-4 text-sm leading-relaxed text-foreground">“{q}”</p>
-            <div className="mt-5 border-t border-border pt-4"><p className="font-bold text-navy">{n}</p><p className="text-xs text-muted-foreground">{a}, Karachi</p></div>
+        {REVIEW_PLACEHOLDERS.map((label, index) => (
+          <Card key={index} className="flex min-h-40 flex-col justify-center border-dashed text-center">
+            <MessageCircle className="mx-auto h-7 w-7 text-royal" />
+            <p className="mt-3 font-semibold text-navy">{label}</p>
+            <p className="mt-1 text-sm text-muted-foreground">Editable placeholder — add an authentic patient review here.</p>
           </Card>
         ))}
       </div>
@@ -341,11 +332,15 @@ export function Testimonials() {
 }
 
 const FAQS = [
-  ["Do I need a referral to book an appointment?", "No. You can book directly through the form above or by calling the centre."],
-  ["Should I come fasting for my visit?", "For blood sugar and lipid tests, please fast for 8–10 hours. Water is allowed. Our team will guide you when confirming."],
-  ["Do you treat both Type 1 and Type 2 diabetes?", "Yes. We manage Type 1, Type 2, gestational diabetes and pre-diabetes for adults and children."],
-  ["How long does a first visit take?", "Most first visits take 60–90 minutes including tests and consultation."],
-  ["What should I bring?", "Please bring previous reports, your current medicines and your glucose meter readings if available."],
+  ["What healthcare services are available at The Diabetes Centre?", "Services include diabetes care and management, diabetic foot care, nutrition and dietetics, endocrinology and thyroid care, weight management, and laboratory and diagnostic testing."],
+  ["Does TDC provide Type 1 and Type 2 diabetes management?", "Yes. Type 1 and Type 2 diabetes management are among the listed healthcare services."],
+  ["Can I get an HbA1c test?", "Yes. HbA1c testing is listed under diabetes care and laboratory services."],
+  ["Does TDC provide diabetic foot screening?", "Yes. Comprehensive foot screening and diabetic foot assessment are available."],
+  ["What is PedoScan foot pressure assessment?", "PedoScan is listed as a foot pressure assessment service for evaluating pressure distribution under the feet."],
+  ["Are nutrition and personalized diet services available?", "Yes. Clinical nutrition consultation and personalized diet planning are available."],
+  ["What laboratory tests are available?", "Listed tests include CBC, FBS, HbA1c, lipid profile, LFTs, RFTs, urine routine examination, and sodium and potassium."],
+  ["How can I book an appointment?", "Select a service and submit the appointment request form, call 0337-1111832, or contact the team on WhatsApp."],
+  ["Where is The Diabetes Centre located?", "Rafah-e-Aam Society, Shah Faisal Avenue, Karachi, Pakistan."],
 ];
 
 export function Faqs() {
@@ -376,18 +371,30 @@ export function Contact() {
   ] as const;
   return (
     <Section id="contact">
-      <SectionHeading eyebrow="Visit Us" title="Location & Contact" />
+      <SectionHeading eyebrow="Contact & Location" title="Visit The Diabetes Centre Karachi" />
       <div className="grid gap-6 lg:grid-cols-2">
-        <div className="grid gap-4 sm:grid-cols-2">
-          {items.map(([Icon, t, v, href]) => (
-            <Card key={t}>
-              <IconBadge><Icon className="h-6 w-6" /></IconBadge>
-              <p className="mt-4 text-sm font-semibold text-muted-foreground">{t}</p>
-              {href ? <a href={href} className="mt-1 block font-bold text-navy hover:text-royal">{v}</a> : <p className="mt-1 font-bold text-navy">{v}</p>}
-            </Card>
-          ))}
+        <div className="grid content-start gap-4">
+          <Card>
+            <IconBadge><MapPin className="h-6 w-6" /></IconBadge>
+            <p className="mt-4 text-sm font-semibold text-muted-foreground">Hospital</p>
+            <p className="mt-1 font-bold text-navy">The Diabetes Centre Hospital</p>
+            <p className="mt-4 text-sm font-semibold text-muted-foreground">Address</p>
+            <p className="mt-1 font-bold text-navy">{CONTACT.address}</p>
+          </Card>
+          <Card>
+            <IconBadge><Phone className="h-6 w-6" /></IconBadge>
+            <p className="mt-4 text-sm font-semibold text-muted-foreground">Phone</p>
+            <a href={CONTACT.phoneHref} className="mt-1 block font-bold text-navy hover:text-royal">{CONTACT.phone}</a>
+            <div className="mt-5 flex flex-col gap-3 sm:flex-row">
+              <CtaButton href={CONTACT.phoneHref} variant="outline"><PhoneCall className="h-4 w-4" />Call The Centre</CtaButton>
+              <CtaButton href={CONTACT.whatsappHref}><MessageCircle className="h-4 w-4" />WhatsApp Us</CtaButton>
+            </div>
+          </Card>
+          <CtaButton href={CONTACT.mapsDirectionsUrl} variant="outline"><MapPin className="h-4 w-4" />Get Directions</CtaButton>
         </div>
-        <iframe title="Map of The Diabetes Centre, Karachi" src="https://www.google.com/maps?q=Karachi,Pakistan&output=embed" className="min-h-80 w-full rounded-3xl border border-border" loading="lazy" />
+        <div className="flex min-h-80 items-center justify-center rounded-3xl border border-dashed border-border bg-muted p-8 text-center">
+          <div><MapPin className="mx-auto h-8 w-8 text-royal" /><p className="mt-3 font-semibold text-navy">Google Maps embed placeholder</p><p className="mt-1 max-w-sm text-sm text-muted-foreground">Add the verified hospital map pin or Google Maps embed URL before publishing. No map pin has been assumed.</p></div>
+        </div>
       </div>
     </Section>
   );
@@ -397,10 +404,10 @@ export function FinalCta() {
   return (
     <section className="px-5 pb-16 sm:pb-20">
       <div className="mx-auto max-w-6xl rounded-[2rem] bg-gradient-to-br from-navy via-royal to-cyan px-6 py-12 text-center sm:px-12 sm:py-16">
-        <h2 className="text-3xl font-extrabold text-primary-foreground sm:text-4xl">Start Your Diabetes Care Journey Today</h2>
-        <p className="mx-auto mt-4 max-w-xl text-primary-foreground/85">Book your appointment at The Diabetes Centre, Karachi, and get a personalised plan to manage your sugar levels.</p>
+        <h2 className="text-3xl font-extrabold text-primary-foreground sm:text-4xl">Take the First Step Towards Better Health</h2>
+        <p className="mx-auto mt-4 max-w-xl text-primary-foreground/85">Contact The Diabetes Centre to learn more about our healthcare services and appointment availability.</p>
         <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
-          <CtaButton href="#book" variant="light"><CalendarCheck className="h-5 w-5" />Book Appointment</CtaButton>
+          <CtaButton href="#book" variant="light"><CalendarCheck className="h-5 w-5" />Book Your Appointment</CtaButton>
           <CtaButton href={CONTACT.whatsappHref} variant="ghostLight"><MessageCircle className="h-5 w-5" />WhatsApp Us</CtaButton>
         </div>
       </div>
@@ -417,7 +424,7 @@ export function Footer() {
           <p className="mt-2 text-sm">Specialist diabetes care in Karachi, Pakistan.</p>
         </div>
         <div className="grid gap-2 text-sm">{NAV.map(([l, h]) => <a key={h} href={h} className="hover:text-cyan">{l}</a>)}</div>
-        <div className="grid gap-2 text-sm"><span>{CONTACT.phone}</span><span>{CONTACT.email}</span><span>{CONTACT.address}</span></div>
+        <div className="grid gap-2 text-sm"><a href={CONTACT.phoneHref} className="hover:text-cyan">{CONTACT.phone}</a><span>{CONTACT.address}</span></div>
       </Container>
       <Container className="mt-10 border-t border-primary-foreground/10 pt-6 text-xs">© {new Date().getFullYear()} The Diabetes Centre, Karachi. All rights reserved.</Container>
     </footer>
