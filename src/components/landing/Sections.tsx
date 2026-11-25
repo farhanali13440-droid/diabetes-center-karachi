@@ -1,7 +1,7 @@
 import { useState } from "react";
 import {
-  Activity, Apple, Baby, CalendarCheck, ChevronDown, Clock, Droplet, Eye, Footprints, HeartPulse,
-  MapPin, Menu, MessageCircle, Phone, ShieldCheck, Stethoscope, X, Microscope, Scale, ClipboardList, PhoneCall,
+  Activity, Apple, CalendarCheck, ChevronDown, Droplet, Footprints, HeartPulse,
+  MapPin, Menu, MessageCircle, Phone, ShieldCheck, X, Microscope, Scale, PhoneCall,
 } from "lucide-react";
 import { CONTACT, Card, Container, CtaButton, IconBadge, Section, SectionHeading } from "./primitives";
 import { AppointmentForm } from "./AppointmentForm";
@@ -34,7 +34,7 @@ export function Header() {
           {NAV.map(([l, h]) => <a key={h} href={h} className="text-sm font-medium text-foreground hover:text-royal">{l}</a>)}
         </nav>
         <div className="hidden items-center gap-3 lg:flex">
-          <a href={CONTACT.phoneHref} className="flex items-center gap-2 text-sm font-semibold text-navy"><Phone className="h-4 w-4 text-royal" />{CONTACT.phone}</a>
+          <a href={CONTACT.phoneHref} onClick={() => trackAdsConversion("call")} className="flex items-center gap-2 text-sm font-semibold text-navy"><Phone className="h-4 w-4 text-royal" />{CONTACT.phone}</a>
           <CtaButton href="#book">Book Appointment</CtaButton>
         </div>
         <button className="rounded-lg p-2 text-navy lg:hidden" onClick={() => setOpen(!open)} aria-label="Toggle menu">
@@ -69,7 +69,7 @@ export function Hero() {
           </p>
           <div className="mt-7 flex flex-col gap-3 sm:flex-row">
             <CtaButton href="#book"><CalendarCheck className="h-5 w-5" />Book Appointment</CtaButton>
-            <CtaButton href={CONTACT.phoneHref} variant="outline"><PhoneCall className="h-5 w-5" />Call Now</CtaButton>
+            <CtaButton href={CONTACT.phoneHref} variant="outline" onClick={() => trackAdsConversion("call")}><PhoneCall className="h-5 w-5" />Call Now</CtaButton>
           </div>
         </div>
         <div id="book" className="relative scroll-mt-24">
@@ -315,7 +315,7 @@ export function Testimonials() {
     <Section>
       <SectionHeading eyebrow="Patient Testimonials" title="Experiences Shared by Our Patients" intro="Verified patient feedback will be displayed here when genuine reviews are available." />
       <div className="grid gap-5 md:grid-cols-3">
-        {REVIEW_PLACEHOLDERS.map((label, index) => (
+        {REVIEW_PLACEHOLDERS.map((_, index) => (
           <Card key={index} className="flex min-h-40 flex-col justify-center border-dashed text-center">
             <MessageCircle className="mx-auto h-7 w-7 text-royal" />
             <p className="mt-3 font-semibold text-navy">Patient feedback</p>
