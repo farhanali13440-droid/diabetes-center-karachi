@@ -5,10 +5,9 @@ import { Button } from "@/components/ui/button";
 export const CONTACT = {
   phone: "0337-1111832",
   phoneHref: "tel:+923371111832",
-  whatsappHref: "https://wa.me/920000000000",
-  email: "info@thediabetescentre.pk",
-  address: "Clinic address, Karachi, Pakistan",
-  hours: "Mon – Sat, 9:00 AM – 9:00 PM",
+  whatsappHref: "https://wa.me/923371111832",
+  address: "Rafah-e-Aam Society, Shah Faisal Avenue, Karachi, Pakistan.",
+  mapsDirectionsUrl: "https://www.google.com/maps/dir/?api=1&destination=Rafah-e-Aam%20Society%2C%20Shah%20Faisal%20Avenue%2C%20Karachi%2C%20Pakistan",
 };
 
 export function Container({ children, className }: { children: ReactNode; className?: string }) {
