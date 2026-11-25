@@ -32,8 +32,8 @@ export function SectionHeading({ eyebrow, title, intro, center = true, invert = 
   );
 }
 
-type BtnProps = { href: string; children: ReactNode; variant?: "primary" | "outline" | "light" | "ghostLight"; className?: string };
-export function CtaButton({ href, children, variant = "primary", className }: BtnProps) {
+type BtnProps = { href: string; children: ReactNode; variant?: "primary" | "outline" | "light" | "ghostLight"; className?: string; onClick?: () => void };
+export function CtaButton({ href, children, variant = "primary", className, onClick }: BtnProps) {
   const styles = {
     primary: "bg-primary text-primary-foreground hover:bg-navy shadow-soft",
     outline: "border-2 border-primary text-primary hover:bg-primary hover:text-primary-foreground",
@@ -42,7 +42,7 @@ export function CtaButton({ href, children, variant = "primary", className }: Bt
   }[variant];
   return (
     <Button asChild className={cn("h-auto min-h-12 gap-2 whitespace-normal rounded-full px-6 text-sm font-semibold sm:text-base", styles, className)}>
-      <a href={href}>{children}</a>
+      <a href={href} onClick={onClick}>{children}</a>
     </Button>
   );
 }
