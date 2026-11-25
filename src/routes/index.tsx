@@ -1,14 +1,20 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { About, Concerns, Contact, Faqs, FinalCta, Footer, HERO_IMAGE, Header, Hero, HowItWorks, MobileBar, Packages, Services, Testimonials, WhyChoose } from "@/components/landing/Sections";
+
+const title = "The Diabetes Centre Karachi | Book a Diabetes Appointment";
+const description = "Specialist diabetes care in Karachi: consultations, insulin management, foot and eye screening, nutrition and screening packages. Book today.";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Diabetes Center Karachi" },
-      { name: "description", content: "Diabetes Center Karachi — diabetes care in Karachi, Pakistan." },
-      { property: "og:title", content: "Diabetes Center Karachi" },
-      { property: "og:description", content: "Diabetes Center Karachi — diabetes care in Karachi, Pakistan." },
+      { title },
+      { name: "description", content: description },
+      { property: "og:title", content: title },
+      { property: "og:description", content: description },
       { property: "og:type", content: "website" },
-      { name: "twitter:card", content: "summary" },
+      { property: "og:image", content: HERO_IMAGE },
+      { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:image", content: HERO_IMAGE },
     ],
   }),
   component: Index,
@@ -16,10 +22,13 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <main className="flex min-h-screen items-center justify-center bg-background px-4">
-      <h1 className="text-center text-4xl font-bold text-foreground md:text-6xl">
-        Diabetes Center Karachi
-      </h1>
-    </main>
+    <>
+      <Header />
+      <main>
+        <Hero /><Concerns /><WhyChoose /><About /><Services /><Packages /><HowItWorks /><Testimonials /><Faqs /><Contact /><FinalCta />
+      </main>
+      <Footer />
+      <MobileBar />
+    </>
   );
 }
