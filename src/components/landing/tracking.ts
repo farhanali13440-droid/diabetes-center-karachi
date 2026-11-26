@@ -7,13 +7,13 @@ declare global {
   }
 }
 
-const conversionId = import.meta.env.VITE_GOOGLE_ADS_CONVERSION_ID?.trim();
+const conversionId = import.meta.env["VITE_GOOGLE_ADS_CONVERSION_ID"]?.trim();
 
 const conversionLabels: Record<ConversionKind, string | undefined> = {
-  appointment: import.meta.env.VITE_GOOGLE_ADS_LABEL_APPOINTMENT?.trim(),
-  call: import.meta.env.VITE_GOOGLE_ADS_LABEL_CALL?.trim(),
-  whatsapp: import.meta.env.VITE_GOOGLE_ADS_LABEL_WHATSAPP?.trim(),
-  package: import.meta.env.VITE_GOOGLE_ADS_LABEL_PACKAGE?.trim(),
+  appointment: import.meta.env["VITE_GOOGLE_ADS_LABEL_APPOINTMENT"]?.trim(),
+  call: import.meta.env["VITE_GOOGLE_ADS_LABEL_CALL"]?.trim(),
+  whatsapp: import.meta.env["VITE_GOOGLE_ADS_LABEL_WHATSAPP"]?.trim(),
+  package: import.meta.env["VITE_GOOGLE_ADS_LABEL_PACKAGE"]?.trim(),
 };
 
 export function initializeGoogleAds() {

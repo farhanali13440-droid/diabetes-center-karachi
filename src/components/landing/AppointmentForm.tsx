@@ -22,7 +22,7 @@ const schema = z.object({
 
 const field = "h-12 w-full min-w-0 rounded-xl border border-input bg-background px-3 text-base text-foreground placeholder:text-muted-foreground focus:border-primary focus:outline-none focus:ring-2 focus:ring-ring/30";
 const label = "grid min-w-0 gap-2 text-sm font-semibold text-navy";
-const endpoint = import.meta.env.VITE_APPOINTMENT_ENDPOINT?.trim();
+const endpoint = import.meta.env["VITE_APPOINTMENT_ENDPOINT"]?.trim();
 
 function todayLocal() {
   const now = new Date();

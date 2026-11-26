@@ -6,9 +6,10 @@ import {
 import { CONTACT, Card, Container, CtaButton, IconBadge, Section, SectionHeading } from "./primitives";
 import { trackAdsConversion } from "./tracking";
 import logo from "@/assets/tdc_logo.png.asset.json";
+import building from "@/assets/tdc-building.webp.asset.json";
 
 const IMG = {
-  hero: "https://images.unsplash.com/photo-1631815588090-d4bfec5b1ccb?w=1400&q=75&auto=format&fit=crop",
+  hero: building.url,
   about: "https://images.unsplash.com/photo-1579684385127-1ef15d508118?w=1000&q=75&auto=format&fit=crop",
 };
 export const HERO_IMAGE = IMG.hero;
@@ -72,7 +73,7 @@ export function Hero() {
           </div>
         </div>
         <div className="relative">
-          <img src={IMG.hero} alt="Healthcare professional checking a patient's blood sugar" className="aspect-[4/3] w-full rounded-[2rem] object-cover shadow-soft lg:aspect-[5/4]" />
+          <img src={IMG.hero} alt="The Diabetes Centre Karachi building exterior" className="aspect-[4/3] w-full rounded-[2rem] object-cover shadow-soft lg:aspect-[5/4]" />
           <div className="absolute -bottom-5 -left-3 rounded-2xl border border-border bg-card p-4 shadow-soft sm:-left-5 sm:p-5">
             <p className="text-sm font-bold text-navy">The Diabetes Centre</p>
             <p className="mt-1 text-xs text-muted-foreground">Diabetes & related healthcare in Karachi</p>
