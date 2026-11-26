@@ -1,3 +1,4 @@
-- [ ] Refine the header and hero to match the Step 2 brief.
-- [ ] Update the appointment fields and clickable contact number.
-- [ ] Verify desktop/mobile layout and form controls.
+- [x] Refine the header and hero to match the Step 2 brief.
+- [x] Update the appointment fields and clickable contact number.
+- [x] Verify desktop/mobile layout and form controls.
+- [x] Add the TDC building photo to the hero section.

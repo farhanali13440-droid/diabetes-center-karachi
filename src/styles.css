@@ -179,7 +179,7 @@
   img, iframe, video { max-width: 100%; }
   input, select, textarea, button { font: inherit; }
   @media (max-width: 639px) {
-    body { padding-bottom: calc(4.75rem + env(safe-area-inset-bottom)); }
+    body { padding-bottom: calc(7rem + env(safe-area-inset-bottom)); }
     h1 { overflow-wrap: anywhere; }
   }
 }

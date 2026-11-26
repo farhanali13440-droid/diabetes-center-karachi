@@ -1,12 +1,13 @@
 import { useState } from "react";
 import {
-  Activity, Apple, CalendarCheck, ChevronDown, Droplet, Footprints, HeartPulse,
+  Activity, Apple, CalendarCheck, CheckCircle2, ChevronDown, Droplet, Footprints, HeartPulse,
   MapPin, Menu, MessageCircle, Phone, ShieldCheck, X, Microscope, Scale, PhoneCall,
 } from "lucide-react";
 import { CONTACT, Card, Container, CtaButton, IconBadge, Section, SectionHeading } from "./primitives";
 import { trackAdsConversion } from "./tracking";
 import logo from "@/assets/tdc_logo.png.asset.json";
 import building from "@/assets/tdc-building.webp.asset.json";
+import { AppointmentForm } from "./AppointmentForm";
 
 const IMG = {
   hero: building.url,
@@ -15,7 +16,7 @@ const IMG = {
 export const HERO_IMAGE = IMG.hero;
 
 const NAV = [
-  ["Services", "#services"], ["Packages", "#packages"], ["About", "#about"], ["FAQs", "#faqs"], ["Contact", "#contact"],
+  ["Home", "#top"], ["Services", "#services"], ["Health Packages", "#packages"], ["About Us", "#about"], ["FAQs", "#faqs"], ["Contact", "#contact"],
 ] as const;
 
 export function Header() {
@@ -30,7 +31,7 @@ export function Header() {
             <span className="block text-xs font-medium text-royal">Karachi</span>
           </span>
         </a>
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden items-center gap-5 lg:flex xl:gap-7">
           {NAV.map(([l, h]) => <a key={h} href={h} className="text-sm font-medium text-foreground hover:text-royal">{l}</a>)}
         </nav>
         <div className="hidden items-center gap-3 lg:flex">
@@ -58,17 +59,22 @@ export function Hero() {
     <section id="top" className="relative overflow-hidden bg-gradient-to-b from-cyan-soft to-background">
       <Container className="grid items-center gap-10 py-12 sm:py-16 lg:grid-cols-[1.1fr_0.9fr] lg:gap-14 lg:py-20">
         <div>
-          <span className="inline-flex items-center gap-2 rounded-full bg-background px-4 py-1.5 text-xs font-semibold text-royal shadow-card sm:text-sm">
-            <ShieldCheck className="h-4 w-4" /> Specialist Diabetes Care in Karachi
-          </span>
-          <h1 className="mt-5 text-4xl font-extrabold leading-[1.1] tracking-tight text-navy sm:text-5xl lg:text-6xl">
-            Take Control of Your Diabetes <span className="text-royal">With Expert Care</span>
+          <p className="text-xs font-bold uppercase tracking-[0.22em] text-royal">The Diabetes Centre Karachi</p>
+          <h1 className="mt-4 text-4xl font-extrabold leading-[1.1] tracking-tight text-navy sm:text-5xl lg:text-6xl">
+            Specialized Diabetes Care & <span className="text-royal">Healthcare Services in Karachi</span>
           </h1>
           <p className="mt-5 max-w-xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-            Explore diabetes management, diabetic foot care, nutrition, metabolic health and diagnostic services at The Diabetes Centre Karachi.
+            From diabetes management and diabetic foot care to nutrition, hormonal health and diagnostic testing, get access to healthcare services at The Diabetes Centre.
           </p>
-          <div className="mt-7 flex flex-col gap-3 sm:flex-row">
-            <CtaButton href={CONTACT.whatsappHref} onClick={() => trackAdsConversion("whatsapp")}><CalendarCheck className="h-5 w-5" />Book Appointment</CtaButton>
+          <ul className="mt-7 grid max-w-xl gap-2.5">
+            {["Comprehensive Diabetes Care", "Specialized Diabetic Foot Services", "Laboratory & Diagnostic Testing"].map(item => (
+              <li key={item} className="flex items-center gap-2.5 text-sm font-semibold text-navy sm:text-base">
+                <CheckCircle2 className="h-5 w-5 shrink-0 text-cyan" />{item}
+              </li>
+            ))}
+          </ul>
+          <div className="mt-8 flex flex-col gap-3 sm:flex-row">
+            <CtaButton href={CONTACT.whatsappHref} onClick={() => trackAdsConversion("whatsapp")}><CalendarCheck className="h-5 w-5" />Book Your Appointment</CtaButton>
             <CtaButton href={CONTACT.phoneHref} variant="outline" onClick={() => trackAdsConversion("call")}><PhoneCall className="h-5 w-5" />Call Now: 0337-1111832</CtaButton>
           </div>
         </div>
@@ -365,7 +371,8 @@ export function Contact() {
   return (
     <Section id="contact">
       <SectionHeading eyebrow="Contact & Location" title="Visit The Diabetes Centre Karachi" />
-      <div className="grid gap-6 lg:grid-cols-2">
+      <div className="grid items-start gap-6 lg:grid-cols-2">
+        <AppointmentForm />
         <div className="grid content-start gap-4">
           <Card>
             <IconBadge><MapPin className="h-6 w-6" /></IconBadge>
@@ -384,8 +391,8 @@ export function Contact() {
             </div>
           </Card>
           <CtaButton href={CONTACT.mapsDirectionsUrl} variant="outline"><MapPin className="h-4 w-4" />Get Directions</CtaButton>
+          <iframe title="Map search for The Diabetes Centre address in Karachi" src="https://www.google.com/maps?q=Rafah-e-Aam%20Society%2C%20Shah%20Faisal%20Avenue%2C%20Karachi%2C%20Pakistan&output=embed" className="min-h-80 w-full rounded-3xl border border-border" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
         </div>
-        <iframe title="Map search for The Diabetes Centre address in Karachi" src="https://www.google.com/maps?q=Rafah-e-Aam%20Society%2C%20Shah%20Faisal%20Avenue%2C%20Karachi%2C%20Pakistan&output=embed" className="min-h-80 w-full rounded-3xl border border-border" loading="lazy" referrerPolicy="no-referrer-when-downgrade" />
       </div>
     </Section>
   );
@@ -425,7 +432,7 @@ export function Footer() {
 export function MobileBar() {
   return (
     <>
-      <div className="fixed bottom-24 right-4 z-[60] flex flex-col gap-3 sm:bottom-6 sm:right-6">
+      <div className="fixed bottom-24 right-4 z-[60] hidden flex-col gap-3 sm:bottom-6 sm:right-6 sm:flex">
         <a href={CONTACT.phoneHref} aria-label={`Call The Diabetes Centre at ${CONTACT.phone}`} title={`Call ${CONTACT.phone}`} onClick={() => trackAdsConversion("call")} className="flex h-14 w-14 items-center justify-center rounded-full bg-primary text-primary-foreground shadow-lg ring-2 ring-background transition-transform hover:scale-105 hover:bg-navy focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-ring">
           <Phone className="h-6 w-6" />
         </a>
